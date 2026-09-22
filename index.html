@@ -202,6 +202,48 @@
   .note { margin-top: 26px; font-size: 12.5px; color: var(--ink-3); }
   .empty { padding: 40px 0; color: var(--ink-3); }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  /* ---------- painel de instruções (modo edição) ---------- */
+  .guia {
+    margin-top: 22px; border: 1px solid var(--line); border-left: 3px solid var(--blue);
+    border-radius: 10px; background: var(--surface); padding: 0 18px;
+  }
+  .guia > summary {
+    list-style: none; cursor: pointer; padding: 14px 0; font-weight: 600;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .guia > summary::-webkit-details-marker { display: none; }
+  .guia > summary::after {
+    content: "mostrar"; margin-left: auto; font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .guia[open] > summary::after { content: "ocultar"; }
+  .guia .marca {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--blue); background: var(--blue-soft);
+    padding: 3px 8px; border-radius: 99px;
+  }
+  .guia ol { margin: 0; padding: 0 0 4px 0; list-style: none; counter-reset: passo; }
+  .guia li {
+    counter-increment: passo; position: relative; padding: 9px 0 9px 38px;
+    border-top: 1px solid var(--line-soft); color: var(--ink-2);
+  }
+  .guia li::before {
+    content: counter(passo); position: absolute; left: 0; top: 9px;
+    width: 24px; height: 24px; border-radius: 99px; background: var(--blue-soft); color: var(--blue);
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600;
+    display: grid; place-items: center;
+  }
+  .guia li strong { color: var(--ink); font-weight: 600; }
+  .guia code {
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+    background: var(--ground); border: 1px solid var(--line-soft);
+    padding: 1px 6px; border-radius: 5px; overflow-wrap: anywhere;
+  }
+  .guia .fecho {
+    border-top: 1px solid var(--line-soft); padding: 10px 0 16px; margin: 0;
+    font-size: 12.5px; color: var(--ink-3);
+  }
 </style>
 
 </head>
@@ -541,12 +583,51 @@
     document.getElementById("addBtn").insertAdjacentElement("beforebegin", btnReset);
     barra.appendChild(btnSalvar);
 
+    montarGuia();
+
     document.getElementById("rodape").textContent =
-      "Modo edição (arquivo local). As mudanças ficam neste navegador até você clicar em “Salvar alterações”, substituir o pecas.js no repositório e fazer o commit.";
+      "Modo edição (arquivo local). Nada do que você muda aqui chega ao time enquanto não passar pelos três passos acima.";
   } else {
     document.getElementById("addBtn").remove();
     document.getElementById("rodape").textContent =
       "Somente leitura. O acompanhamento é atualizado pelo responsável do checklist.";
+  }
+
+  /* ---------- painel: o que fazer para o time ver ---------- */
+  function montarGuia() {
+    var passos = [
+      ["Edite aqui na tela.", "Status, responsável, prazo, peças novas. Fica salvo neste navegador enquanto você não publica — pode fechar e voltar depois."],
+      ["Clique em <strong>Salvar alterações</strong>.", "Baixa um arquivo <code>pecas.js</code> para a sua pasta Downloads. Esse arquivo é o checklist."],
+      ["Dê duplo clique em <code>publicar.cmd</code>.", "Está na pasta do projeto. Ele troca o arquivo, mostra o que mudou e envia. O time vê a versão nova em até 2 minutos."]
+    ];
+
+    var box = document.createElement("details");
+    box.className = "guia";
+    box.open = true;
+
+    var sum = document.createElement("summary");
+    var marca = document.createElement("span");
+    marca.className = "marca"; marca.textContent = "Modo edição";
+    var txt = document.createElement("span");
+    txt.textContent = "Como fazer o time ver essas mudanças";
+    sum.appendChild(marca); sum.appendChild(txt);
+    box.appendChild(sum);
+
+    var ol = document.createElement("ol");
+    passos.forEach(function (p) {
+      var li = document.createElement("li");
+      li.innerHTML = "<strong>" + p[0] + "</strong> " + p[1];
+      ol.appendChild(li);
+    });
+    box.appendChild(ol);
+
+    var fecho = document.createElement("p");
+    fecho.className = "fecho";
+    fecho.innerHTML = "Link do time (só leitura): <code>johnyamaral-labseazone.github.io/festa-8-anos</code> · " +
+      "<strong>Descartar rascunho</strong> joga fora o que ainda não foi publicado e volta para a última versão enviada.";
+    box.appendChild(fecho);
+
+    document.querySelector(".toolbar").insertAdjacentElement("afterend", box);
   }
 
   render();
