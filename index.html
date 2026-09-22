@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<title>Revolução 8 Anos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ink: #0d1330;
+    --ink-2: #4a5270;
+    --ink-3: #7c849e;
+    --ground: #f5f6fa;
+    --surface: #ffffff;
+    --line: #dfe2ec;
+    --line-soft: #ebedf3;
+    --blue: #0055ff;
+    --blue-soft: #e5edff;
+    --coral: #fc6058;
+    --coral-soft: #ffe9e7;
+    --ok: #17875a;
+    --ok-soft: #e0f2e9;
+    --warn: #b06a00;
+    --warn-soft: #fbeed7;
+    --focus: #0055ff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #eef0f8;
+      --ink-2: #a8b0cb;
+      --ink-3: #757d99;
+      --ground: #0a0d1c;
+      --surface: #141829;
+      --line: #2a3048;
+      --line-soft: #1e2338;
+      --blue: #5b8cff;
+      --blue-soft: #1a2549;
+      --coral: #ff7d74;
+      --coral-soft: #3a1f21;
+      --ok: #4ecb92;
+      --ok-soft: #12312a;
+      --warn: #e8ac4a;
+      --warn-soft: #33270f;
+      --focus: #5b8cff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #eef0f8;
+    --ink-2: #a8b0cb;
+    --ink-3: #757d99;
+    --ground: #0a0d1c;
+    --surface: #141829;
+    --line: #2a3048;
+    --line-soft: #1e2338;
+    --blue: #5b8cff;
+    --blue-soft: #1a2549;
+    --coral: #ff7d74;
+    --coral-soft: #3a1f21;
+    --ok: #4ecb92;
+    --ok-soft: #12312a;
+    --warn: #e8ac4a;
+    --warn-soft: #33270f;
+    --focus: #5b8cff;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding-inline: 20px;
+    padding-block: 0 64px;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; }
+  *, *::before, *::after { box-sizing: border-box; }
+  h1, h2, h3 { margin: 0; font-family: "Familjen Grotesk", "Helvetica Neue", sans-serif; text-wrap: balance; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+
+  /* ---------- cabeçalho ---------- */
+  header.hero { padding-block: 40px 28px; border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 18px;
+  }
+  .mote { font-size: clamp(30px, 6.4vw, 54px); line-height: 1.02; font-weight: 700; letter-spacing: -.025em; }
+  .mote .ev { color: var(--ink); display: block; }
+  .mote .rv { color: var(--coral); display: block; }
+  .sub { color: var(--ink-2); margin-top: 14px; max-width: 58ch; }
+
+  .meters { display: flex; flex-wrap: wrap; gap: 28px 44px; margin-top: 30px; align-items: flex-end; }
+  .meter-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .meter-val { font-family: "Familjen Grotesk", sans-serif; font-size: 34px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .meter-val small { font-size: 14px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; }
+  .progress-block { flex: 1 1 260px; min-width: 220px; }
+  .bar { height: 8px; border-radius: 99px; background: var(--line-soft); overflow: hidden; display: flex; margin-top: 10px; }
+  .bar i { display: block; height: 100%; transition: width .35s ease; }
+  .bar .done { background: var(--ok); }
+  .bar .going { background: var(--blue); }
+  .bar-legend { display: flex; gap: 16px; margin-top: 8px; font-size: 12px; color: var(--ink-2); flex-wrap: wrap; }
+  .dot { width: 8px; height: 8px; border-radius: 99px; display: inline-block; margin-right: 5px; vertical-align: 1px; }
+
+  /* ---------- controles ---------- */
+  .toolbar {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    padding-block: 22px; position: sticky; top: env(safe-area-inset-top, 0px);
+    background: var(--ground); z-index: 5; border-bottom: 1px solid var(--line-soft);
+  }
+  .chipfilter {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    padding: 6px 13px; border-radius: 99px; cursor: pointer; font-size: 13px; font-weight: 500;
+  }
+  .chipfilter[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .spacer { flex: 1 1 auto; }
+  .btn {
+    border: 1px solid var(--blue); background: var(--blue); color: #fff; font-weight: 600;
+    padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px;
+  }
+  .btn.ghost { background: transparent; color: var(--blue); }
+  .btn.quiet { background: transparent; border-color: var(--line); color: var(--ink-2); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* ---------- lista ---------- */
+  .cat { margin-top: 34px; }
+  .cat-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
+  .cat-head h2 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+  .cat-count { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+  .row {
+    display: grid; grid-template-columns: 4px 1fr 180px 132px 116px 32px;
+    align-items: center; gap: 0 14px;
+    border-bottom: 1px solid var(--line-soft); background: var(--surface);
+  }
+  .row .stripe { align-self: stretch; background: transparent; }
+  .row.atrasada .stripe { background: var(--coral); }
+  .row.pronta .stripe { background: var(--ok); }
+  .cell { padding-block: 13px; min-width: 0; }
+  .peca-nome { font-weight: 500; overflow-wrap: anywhere; }
+  .peca-obs { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; overflow-wrap: anywhere; }
+  .tag-nova { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-left: 8px; }
+
+  select.status, input.txt {
+    width: 100%; border: 1px solid transparent; background: transparent; border-radius: 7px;
+    padding: 6px 8px; font-size: 13.5px;
+  }
+  input.txt:hover, select.status:hover { border-color: var(--line); }
+  input.txt::placeholder { color: var(--ink-3); }
+  select.status { font-weight: 600; appearance: none; cursor: pointer; text-align: left; }
+  select.status option { color: var(--ink); background: var(--surface); font-weight: 400; }
+  .s-a_fazer { color: var(--ink-3); background: var(--line-soft); }
+  .s-em_criacao { color: var(--blue); background: var(--blue-soft); }
+  .s-em_aprovacao { color: var(--warn); background: var(--warn-soft); }
+  .s-aprovado { color: var(--ok); background: var(--ok-soft); }
+  .s-produzido { color: #fff; background: var(--ok); }
+  .prazo-late { color: var(--coral); font-weight: 600; }
+  .del {
+    border: none; background: transparent; color: var(--ink-3); cursor: pointer;
+    font-size: 17px; line-height: 1; padding: 6px; border-radius: 6px;
+  }
+  .del:hover { color: var(--coral); background: var(--coral-soft); }
+
+  .colhead { display: grid; grid-template-columns: 4px 1fr 180px 132px 116px 32px; gap: 0 14px; padding-top: 12px; }
+  .colhead span {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  @media (max-width: 760px) {
+    .row, .colhead { grid-template-columns: 4px 1fr 34px; }
+    .colhead span:nth-child(n+3):not(:last-child) { display: none; }
+    .row .cell.c-resp, .row .cell.c-status, .row .cell.c-prazo { grid-column: 2; padding-block: 0 10px; }
+    .row .cell.c-nome { padding-bottom: 6px; }
+    .row .cell.c-del { grid-row: 1; grid-column: 3; }
+    select.status, input.txt { border-color: var(--line); }
+  }
+
+  /* ---------- formulário ---------- */
+  dialog::backdrop { background: rgba(6,10,26,.55); }
+  dialog {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    border-radius: 14px; padding: 24px; width: min(440px, calc(100vw - 40px));
+  }
+  dialog h3 { font-size: 19px; margin-bottom: 16px; }
+  .field { display: block; margin-bottom: 12px; }
+  .field span { display: block; font-size: 12px; color: var(--ink-2); margin-bottom: 5px; }
+  .field input, .field select {
+    width: 100%; padding: 9px 11px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--ground);
+  }
+  .dlg-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+
+  .note { margin-top: 26px; font-size: 12.5px; color: var(--ink-3); }
+  .empty { padding: 40px 0; color: var(--ink-3); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Seazone · Festa de 8 anos · 28 de novembro</p>
+    <h1 class="mote"><span class="ev">8 anos de evolução.</span><span class="rv">1 ano de revolução.</span></h1>
+    <p class="sub">Acompanhamento das peças de comunicação e produção da festa. Todas as peças devem estar aprovadas até <strong>31 de outubro</strong> — novembro fica só para produção e montagem.</p>
+
+    <div class="meters">
+      <div>
+        <div class="meter-label">Para a festa</div>
+        <div class="meter-val" id="dFesta">—</div>
+      </div>
+      <div>
+        <div class="meter-label">Para fechar as peças</div>
+        <div class="meter-val" id="dPecas">—</div>
+      </div>
+      <div class="progress-block">
+        <div class="meter-label">Andamento</div>
+        <div class="meter-val" id="pctVal">0<small>%</small></div>
+        <div class="bar"><i class="done" id="barDone" style="width:0%"></i><i class="going" id="barGoing" style="width:0%"></i></div>
+        <div class="bar-legend">
+          <span><i class="dot" style="background:var(--ok)"></i><span id="lgDone">0</span> prontas</span>
+          <span><i class="dot" style="background:var(--blue)"></i><span id="lgGoing">0</span> em andamento</span>
+          <span><i class="dot" style="background:var(--line)"></i><span id="lgTodo">0</span> a fazer</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <button class="chipfilter" data-f="todas" aria-pressed="true">Todas</button>
+    <button class="chipfilter" data-f="pendentes" aria-pressed="false">Pendentes</button>
+    <button class="chipfilter" data-f="atrasadas" aria-pressed="false">Atrasadas</button>
+    <button class="chipfilter" data-f="prontas" aria-pressed="false">Prontas</button>
+    <span class="spacer"></span>
+    <button class="btn" id="addBtn">Adicionar peça</button>
+  </div>
+
+  <main id="lista"><p class="empty">Carregando as peças…</p></main>
+
+  <p class="note" id="rodape">As alterações são salvas e ficam visíveis para todo mundo que abrir esta página.</p>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" id="form">
+    <h3>Nova peça</h3>
+    <label class="field"><span>Peça</span><input id="f_nome" required placeholder="Ex.: Adesivo de elevador"></label>
+    <label class="field"><span>Categoria</span>
+      <select id="f_cat">
+        <option>Identidade</option><option>Brindes</option><option>Cenografia</option>
+        <option>Convite</option><option>Conteúdo</option><option>Social</option><option>Extras</option>
+      </select>
+    </label>
+    <label class="field"><span>Responsável</span><input id="f_resp" placeholder="Quem toca"></label>
+    <label class="field"><span>Prazo</span><input id="f_prazo" type="date" value="2026-10-31"></label>
+    <label class="field"><span>Observação</span><input id="f_obs" placeholder="Opcional"></label>
+    <div class="dlg-actions">
+      <button class="btn quiet" value="cancel" type="submit" formnovalidate>Cancelar</button>
+      <button class="btn" value="ok" type="submit">Adicionar</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="pecas.js"></script>
+<script>
+(function () {
+  var FESTA = "2026-11-28", LIMITE = "2026-10-31";
+  var ORDEM_CAT = ["Identidade", "Convite", "Brindes", "Cenografia", "Conteúdo", "Social", "Extras"];
+  var STATUS = [
+    ["a_fazer", "A fazer"], ["em_criacao", "Em criação"], ["em_aprovacao", "Em aprovação"],
+    ["aprovado", "Aprovado"], ["produzido", "Produzido"]
+  ];
+  var PRONTO = { aprovado: 1, produzido: 1 };
+  var ANDANDO = { em_criacao: 1, em_aprovacao: 1 };
+
+  var pecas = [], filtro = "todas", db = null, podeEscrever = true;
+  var lista = document.getElementById("lista");
+
+  function hoje() { var d = new Date(); return d.toISOString().slice(0, 10); }
+  function diasAte(iso) {
+    var a = new Date(hoje() + "T00:00:00"), b = new Date(iso + "T00:00:00");
+    return Math.round((b - a) / 86400000);
+  }
+  function fmtDias(n) {
+    if (n > 0) return n + '<small> dias</small>';
+    if (n === 0) return 'hoje';
+    return Math.abs(n) + '<small> dias atrás</small>';
+  }
+  function fmtData(iso) {
+    if (!iso) return "";
+    var p = iso.split("-");
+    return p[2] + "/" + p[1];
+  }
+  function atrasada(p) { return !PRONTO[p.status] && p.prazo && diasAte(p.prazo) < 0; }
+
+  document.getElementById("dFesta").innerHTML = fmtDias(diasAte(FESTA));
+  document.getElementById("dPecas").innerHTML = fmtDias(diasAte(LIMITE));
+
+  function resumo() {
+    var done = 0, going = 0;
+    pecas.forEach(function (p) {
+      if (PRONTO[p.status]) done++; else if (ANDANDO[p.status]) going++;
+    });
+    var t = pecas.length || 1;
+    document.getElementById("barDone").style.width = (done / t * 100) + "%";
+    document.getElementById("barGoing").style.width = (going / t * 100) + "%";
+    document.getElementById("pctVal").innerHTML = Math.round(done / t * 100) + "<small>%</small>";
+    document.getElementById("lgDone").textContent = done;
+    document.getElementById("lgGoing").textContent = going;
+    document.getElementById("lgTodo").textContent = pecas.length - done - going;
+  }
+
+  function passaFiltro(p) {
+    if (filtro === "todas") return true;
+    if (filtro === "prontas") return !!PRONTO[p.status];
+    if (filtro === "pendentes") return !PRONTO[p.status];
+    if (filtro === "atrasadas") return atrasada(p);
+    return true;
+  }
+
+  function salvar(id, campo, valor) {
+    var p = pecas.find(function (x) { return x.id === id; });
+    if (p) { p[campo] = valor; }
+    render();
+    if (!db || !podeEscrever) return;
+    var patch = {}; patch[campo] = valor;
+    db.doc("pecas/" + id).update(patch).catch(function (e) {
+      if (e && e.code === "invalid_argument") {
+        podeEscrever = false;
+        document.getElementById("rodape").textContent =
+          "Você está vendo esta página em modo leitura — peça acesso de edição para alterar o status.";
+        render();
+      }
+    });
+  }
+
+  function linha(p) {
+    var row = document.createElement("div");
+    row.className = "row" + (atrasada(p) ? " atrasada" : (PRONTO[p.status] ? " pronta" : ""));
+
+    var stripe = document.createElement("i"); stripe.className = "stripe"; row.appendChild(stripe);
+
+    var c1 = document.createElement("div"); c1.className = "cell c-nome";
+    var nome = document.createElement("div"); nome.className = "peca-nome";
+    nome.textContent = p.nome;
+    if (p.sugerida) { var t = document.createElement("span"); t.className = "tag-nova"; t.textContent = "sugestão"; nome.appendChild(t); }
+    c1.appendChild(nome);
+    if (p.obs) { var o = document.createElement("div"); o.className = "peca-obs"; o.textContent = p.obs; c1.appendChild(o); }
+    row.appendChild(c1);
+
+    var c2 = document.createElement("div"); c2.className = "cell c-resp";
+    var resp = document.createElement("input");
+    resp.className = "txt"; resp.id = "resp-" + p.id; resp.placeholder = "Responsável";
+    resp.value = p.responsavel || ""; resp.disabled = !podeEscrever;
+    resp.addEventListener("change", function () { salvar(p.id, "responsavel", resp.value.trim()); });
+    c2.appendChild(resp); row.appendChild(c2);
+
+    var c3 = document.createElement("div"); c3.className = "cell c-status";
+    var sel = document.createElement("select");
+    sel.className = "status s-" + p.status; sel.id = "st-" + p.id; sel.disabled = !podeEscrever;
+    STATUS.forEach(function (s) {
+      var op = document.createElement("option");
+      op.value = s[0]; op.textContent = s[1];
+      if (s[0] === p.status) op.selected = true;
+      sel.appendChild(op);
+    });
+    sel.addEventListener("change", function () { salvar(p.id, "status", sel.value); });
+    c3.appendChild(sel); row.appendChild(c3);
+
+    var c4 = document.createElement("div"); c4.className = "cell c-prazo";
+    var pz = document.createElement("input");
+    pz.className = "txt" + (atrasada(p) ? " prazo-late" : ""); pz.type = "date";
+    pz.id = "pz-" + p.id; pz.value = p.prazo || ""; pz.disabled = !podeEscrever;
+    pz.addEventListener("change", function () { salvar(p.id, "prazo", pz.value); });
+    c4.appendChild(pz); row.appendChild(c4);
+
+    var c5 = document.createElement("div"); c5.className = "cell c-del";
+    if (podeEscrever) {
+      var del = document.createElement("button");
+      del.className = "del"; del.type = "button"; del.title = "Remover peça";
+      del.setAttribute("aria-label", "Remover " + p.nome); del.textContent = "×";
+      del.addEventListener("click", function () {
+        if (!confirm("Remover “" + p.nome + "” do checklist?")) return;
+        pecas = pecas.filter(function (x) { return x.id !== p.id; });
+        render();
+        if (db) db.doc("pecas/" + p.id).delete().catch(function () {});
+      });
+      c5.appendChild(del);
+    }
+    row.appendChild(c5);
+    return row;
+  }
+
+  function render() {
+    resumo();
+    lista.textContent = "";
+    var visiveis = pecas.filter(passaFiltro);
+    if (!visiveis.length) {
+      var e = document.createElement("p"); e.className = "empty";
+      e.textContent = pecas.length ? "Nenhuma peça neste filtro." : "Nenhuma peça cadastrada ainda.";
+      lista.appendChild(e); return;
+    }
+    var cats = ORDEM_CAT.slice();
+    visiveis.forEach(function (p) { if (cats.indexOf(p.categoria) < 0) cats.push(p.categoria); });
+
+    cats.forEach(function (cat) {
+      var itens = visiveis.filter(function (p) { return p.categoria === cat; });
+      if (!itens.length) return;
+      itens.sort(function (a, b) { return (a.ordem || 0) - (b.ordem || 0); });
+
+      var sec = document.createElement("section"); sec.className = "cat";
+      var head = document.createElement("div"); head.className = "cat-head";
+      var h = document.createElement("h2"); h.textContent = cat;
+      var cnt = document.createElement("span"); cnt.className = "cat-count";
+      var prontas = itens.filter(function (p) { return PRONTO[p.status]; }).length;
+      cnt.textContent = prontas + "/" + itens.length;
+      head.appendChild(h); head.appendChild(cnt); sec.appendChild(head);
+
+      var ch = document.createElement("div"); ch.className = "colhead";
+      ["", "Peça", "Responsável", "Status", "Prazo", ""].forEach(function (t) {
+        var s = document.createElement("span"); s.textContent = t; ch.appendChild(s);
+      });
+      sec.appendChild(ch);
+
+      itens.forEach(function (p) { sec.appendChild(linha(p)); });
+      lista.appendChild(sec);
+    });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".chipfilter"), function (b) {
+    b.addEventListener("click", function () {
+      filtro = b.dataset.f;
+      Array.prototype.forEach.call(document.querySelectorAll(".chipfilter"), function (x) {
+        x.setAttribute("aria-pressed", String(x === b));
+      });
+      render();
+    });
+  });
+
+  var dlg = document.getElementById("dlg");
+  document.getElementById("addBtn").addEventListener("click", function () { dlg.showModal(); });
+  document.getElementById("form").addEventListener("submit", function (ev) {
+    if (ev.submitter && ev.submitter.value === "cancel") return;
+    var nome = document.getElementById("f_nome").value.trim();
+    if (!nome) { ev.preventDefault(); return; }
+    var nova = {
+      id: "p" + Date.now().toString(36),
+      nome: nome,
+      categoria: document.getElementById("f_cat").value,
+      responsavel: document.getElementById("f_resp").value.trim(),
+      prazo: document.getElementById("f_prazo").value,
+      obs: document.getElementById("f_obs").value.trim(),
+      status: "a_fazer",
+      ordem: 900 + pecas.length
+    };
+    pecas.push(nova); render();
+    if (db) {
+      var body = Object.assign({}, nova); delete body.id;
+      db.doc("pecas/" + nova.id).set(body).catch(function () {});
+    }
+    document.getElementById("form").reset();
+    document.getElementById("f_prazo").value = "2026-10-31";
+  });
+
+  render();
+
+  /* ---------- dados e modos ----------
+     Servido por HTTP (GitHub Pages) → leitura, para o time acompanhar.
+     Aberto do disco (file://)       → edição, para o dono do checklist. */
+  var EDITAVEL = (location.protocol === "file:");
+  var KEY = "festa8anos.rascunho.v3";
+
+  function base() {
+    var origem = (window.PECAS && window.PECAS.length) ? window.PECAS : [];
+    return origem.map(function (p) { return Object.assign({}, p); });
+  }
+
+  function gravarRascunho() {
+    if (!EDITAVEL) return;
+    try { localStorage.setItem(KEY, JSON.stringify(pecas)); } catch (e) { /* storage bloqueado */ }
+  }
+
+  var _render = render;
+  render = function () { _render(); gravarRascunho(); };
+
+  pecas = base();
+  if (EDITAVEL) {
+    try {
+      var lido = JSON.parse(localStorage.getItem(KEY) || "null");
+      if (Array.isArray(lido) && lido.length) pecas = lido;
+    } catch (e) { /* rascunho corrompido: segue com o arquivo publicado */ }
+  } else {
+    podeEscrever = false;
+  }
+
+  /* ---------- publicar: gera o pecas.js novo ---------- */
+  function linhaJs(p) {
+    function s(v) { return JSON.stringify(v == null ? "" : v); }
+    return '    {id:' + s(p.id) + ',nome:' + s(p.nome) + ',categoria:' + s(p.categoria) +
+      ',status:' + s(p.status) + ',prazo:' + s(p.prazo) + ',responsavel:' + s(p.responsavel) +
+      ',obs:' + s(p.obs) + ',ordem:' + (p.ordem || 0) + ',sugerida:' + (p.sugerida ? "true" : "false") + '}';
+  }
+
+  function baixarPecasJs() {
+    var txt = "/* Dados do checklist da festa de 8 anos da Seazone.\n" +
+      "   Editado pela página em modo local e publicado por commit. */\n" +
+      "window.PECAS = [\n" +
+      pecas.map(linhaJs).join(",\n") + "\n];\n";
+    var url = URL.createObjectURL(new Blob([txt], { type: "text/javascript;charset=utf-8" }));
+    var a = document.createElement("a");
+    a.href = url; a.download = "pecas.js";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  var barra = document.getElementById("addBtn").parentNode;
+
+  if (EDITAVEL) {
+    var btnSalvar = document.createElement("button");
+    btnSalvar.className = "btn"; btnSalvar.type = "button";
+    btnSalvar.textContent = "Salvar alterações";
+    btnSalvar.title = "Baixa o pecas.js atualizado para substituir no repositório";
+    btnSalvar.addEventListener("click", baixarPecasJs);
+
+    var btnReset = document.createElement("button");
+    btnReset.className = "btn quiet"; btnReset.type = "button";
+    btnReset.textContent = "Descartar rascunho";
+    btnReset.title = "Volta para a última versão publicada no repositório";
+    btnReset.addEventListener("click", function () {
+      if (!confirm("Descartar as alterações não publicadas e voltar para a versão do repositório?")) return;
+      pecas = base(); render();
+    });
+
+    document.getElementById("addBtn").insertAdjacentElement("beforebegin", btnReset);
+    barra.appendChild(btnSalvar);
+
+    document.getElementById("rodape").textContent =
+      "Modo edição (arquivo local). As mudanças ficam neste navegador até você clicar em “Salvar alterações”, substituir o pecas.js no repositório e fazer o commit.";
+  } else {
+    document.getElementById("addBtn").remove();
+    document.getElementById("rodape").textContent =
+      "Somente leitura. O acompanhamento é atualizado pelo responsável do checklist.";
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
