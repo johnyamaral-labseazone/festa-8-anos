@@ -16,14 +16,12 @@ andamento por categoria, o status de cada peça, responsável, prazo e o que já
    Aberto do disco, ele entra em **modo edição**; servido pelo Pages, fica em modo leitura.
 2. Altere status, responsável, prazo — ou adicione peças.
    As mudanças ficam salvas no seu navegador enquanto você não publica.
-3. Clique em **Salvar alterações**: baixa um `pecas.js` atualizado.
-4. Substitua o `pecas.js` da pasta pelo arquivo baixado e faça commit:
+3. Clique em **Salvar alterações**: baixa um `pecas.js` atualizado para a pasta Downloads.
+4. Dê duplo clique em **`publicar.cmd`**. Ele acha o arquivo baixado, substitui o `pecas.js`,
+   mostra o que mudou, faz o commit e o push.
 
-   ```
-   git add pecas.js
-   git commit -m "checklist: atualiza andamento"
-   git push
-   ```
+Se preferir na mão: copie o `pecas.js` baixado por cima do que está na pasta e rode
+`git add pecas.js && git commit -m "checklist: atualiza andamento" && git push`.
 
 Cada publicação é um commit, então o histórico do repositório mostra como o checklist evoluiu.
 
@@ -33,3 +31,4 @@ Cada publicação é um commit, então o histórico do repositório mostra como 
 |---|---|
 | `index.html` | a página inteira — estilo, layout e lógica |
 | `pecas.js` | os dados do checklist; é o único arquivo que muda no dia a dia |
+| `publicar.cmd` | publica a atualização em um clique (chama o `publicar.ps1`) |
