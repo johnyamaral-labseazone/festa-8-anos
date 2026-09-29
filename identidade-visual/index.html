@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seazone 8 anos · Identidade visual da festa</title>
+<style>
+  @font-face { font-family: "Helvetica SZS"; src: url("fonts/Helvetica-Light.ttf"); font-weight: 300; }
+  @font-face { font-family: "Helvetica SZS"; src: url("fonts/Helvetica.ttf"); font-weight: 400; }
+  @font-face { font-family: "Helvetica SZS"; src: url("fonts/Helvetica-Bold.ttf"); font-weight: 700; }
+
+  :root {
+    /* Paleta medida nos mockups da festa */
+    --noite: #050B1F;
+    --navy: #0A1A3A;
+    --navy-luz: #0B2150;
+    --azul: #0A7CFF;
+    --azul-neon: #1FA4FF;
+    --azul-fundo: #0858C8;
+    --laranja: #FF5A2E;
+    --laranja-brasa: #E8461C;
+    --laranja-claro: #FF8A4C;
+    --branco: #FFFFFF;
+    --cinza: #8A9BB8;
+
+    --glow-azul: 0 0 6px rgba(31,164,255,.9), 0 0 22px rgba(10,124,255,.75), 0 0 60px rgba(10,124,255,.5);
+    --glow-laranja: 0 0 6px rgba(255,138,76,.9), 0 0 22px rgba(255,90,46,.75), 0 0 60px rgba(232,70,28,.5);
+    --margem: clamp(24px, 6vw, 96px);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Helvetica SZS", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: var(--branco);
+    background: var(--noite);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+
+  /* ---------- Estrutura ---------- */
+  section { position: relative; padding: 120px var(--margem); overflow: hidden; }
+  .wrap { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+  .eyebrow {
+    font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--laranja); margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; box-shadow: var(--glow-laranja); }
+  .eyebrow.azul { color: var(--azul-neon); }
+  .eyebrow.azul::before { box-shadow: var(--glow-azul); }
+  h2 { font-weight: 700; font-size: clamp(34px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -.015em; margin-bottom: 24px; }
+  .lead { font-weight: 300; font-size: clamp(18px, 1.8vw, 22px); color: rgba(255,255,255,.82); max-width: 720px; }
+  .lead strong { font-weight: 700; color: var(--branco); }
+  .t-azul { color: var(--azul-neon); }
+  .t-laranja { color: var(--laranja); }
+
+  .fundo-noite {
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(11,33,80,.95) 0%, transparent 70%),
+      var(--noite);
+  }
+  .fundo-navy { background: linear-gradient(180deg, var(--noite) 0%, var(--navy) 50%, var(--noite) 100%); }
+
+  /* Circuitos decorativos (SVG) */
+  .circuito { position: absolute; pointer-events: none; z-index: 1; }
+  .circuito path { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .circuito .a { stroke: var(--azul); filter: drop-shadow(0 0 4px var(--azul-neon)); }
+  .circuito .l { stroke: var(--laranja); filter: drop-shadow(0 0 4px var(--laranja)); }
+  .circuito circle { stroke-width: 2; }
+  .circuito .na { fill: var(--noite); stroke: var(--azul-neon); filter: drop-shadow(0 0 4px var(--azul-neon)); }
+  .circuito .nl { fill: var(--noite); stroke: var(--laranja); filter: drop-shadow(0 0 4px var(--laranja)); }
+  .circuito .ca { fill: var(--azul-neon); filter: drop-shadow(0 0 5px var(--azul-neon)); }
+  .circuito .cl { fill: var(--laranja-claro); filter: drop-shadow(0 0 5px var(--laranja)); }
+
+  /* Anéis de luz */
+  .aneis { position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%); width: 1400px; height: 420px; z-index: 1; pointer-events: none; }
+  .aneis span { position: absolute; inset: 0; margin: auto; border-radius: 50%; }
+  .aneis .r1 { width: 100%; height: 100%; border: 2px solid transparent;
+    background: linear-gradient(90deg, var(--azul-neon), var(--azul) 45%, var(--laranja) 80%, var(--laranja-claro)) border-box;
+    -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    filter: drop-shadow(0 0 10px rgba(31,164,255,.8)); }
+  .aneis .r2 { width: 72%; height: 72%; border: 1px solid rgba(31,164,255,.35); }
+  .aneis .r3 { width: 46%; height: 46%; border: 1px solid rgba(31,164,255,.2); }
+
+  /* ---------- Topo ---------- */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px var(--margem);
+    background: linear-gradient(180deg, rgba(5,11,31,.92), rgba(5,11,31,0));
+  }
+  header img { height: 26px; }
+  header nav { display: flex; gap: 28px; }
+  header nav a { color: rgba(255,255,255,.7); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  header nav a:hover { color: var(--azul-neon); }
+
+  /* ---------- 1. Capa ---------- */
+  .capa { min-height: 100vh; display: flex; align-items: center; padding-top: 140px; padding-bottom: 260px; }
+  .capa .wrap { width: 100%; }
+  .lockup { display: flex; align-items: center; gap: clamp(8px, 1.4vw, 20px); }
+  .lockup .num {
+    font-weight: 300; line-height: .8; letter-spacing: -.04em;
+    font-size: clamp(160px, 22vw, 320px);
+  }
+  .lockup .num.oito { color: transparent; -webkit-text-stroke: clamp(3px, .5vw, 7px) var(--azul-neon); filter: drop-shadow(0 0 8px var(--azul-neon)) drop-shadow(0 0 30px var(--azul)); }
+  .lockup .num.um { font-weight: 700; color: transparent; -webkit-text-stroke: clamp(3px, .5vw, 7px) var(--laranja); filter: drop-shadow(0 0 8px var(--laranja-claro)) drop-shadow(0 0 30px var(--laranja-brasa)); }
+  .lockup .frase { display: flex; flex-direction: column; }
+  .lockup .fina { font-weight: 300; font-size: clamp(22px, 3vw, 42px); line-height: 1; color: var(--branco); display: flex; align-items: center; gap: 14px; }
+  .lockup .fina::after { content: ""; flex: 0 0 clamp(40px, 6vw, 90px); height: 2px; }
+  .lockup.azul .fina::after { background: var(--azul-neon); box-shadow: var(--glow-azul); }
+  .lockup.laranja .fina::after { background: var(--laranja); box-shadow: var(--glow-laranja); }
+  .lockup .forte { font-weight: 700; font-size: clamp(40px, 6.4vw, 92px); line-height: 1; letter-spacing: -.02em; }
+  .lockup.azul .forte { color: var(--azul-neon); text-shadow: 0 0 24px rgba(10,124,255,.6); }
+  .lockup.laranja .forte { color: var(--laranja); text-shadow: 0 0 24px rgba(255,90,46,.55); }
+  .capa .linha2 { margin-left: clamp(60px, 10vw, 150px); margin-top: clamp(-40px, -3vw, -20px); }
+  .capa .sub { margin-top: 56px; display: flex; align-items: center; gap: 16px; color: var(--cinza); font-size: 14px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
+  .capa .sub img { height: 22px; }
+
+  /* ---------- 2. Mote ---------- */
+  .mote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 64px; }
+  .pilar {
+    position: relative; padding: 44px 40px 48px; border-radius: 24px;
+    background: linear-gradient(160deg, rgba(11,33,80,.75), rgba(5,11,31,.9));
+    border: 1px solid rgba(31,164,255,.35);
+    box-shadow: inset 0 0 40px rgba(10,124,255,.08);
+  }
+  .pilar.rev { border-color: rgba(255,90,46,.4); box-shadow: inset 0 0 40px rgba(255,90,46,.07); }
+  .pilar .big { font-weight: 700; font-size: 110px; line-height: .85; color: transparent; -webkit-text-stroke: 3px var(--azul-neon); filter: drop-shadow(0 0 10px var(--azul)); margin-bottom: 20px; }
+  .pilar.rev .big { -webkit-text-stroke-color: var(--laranja); filter: drop-shadow(0 0 10px var(--laranja-brasa)); }
+  .pilar h3 { font-size: 30px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 14px; }
+  .pilar p { color: rgba(255,255,255,.82); font-size: 17px; }
+  .pilar p strong { color: var(--branco); }
+  .ponte {
+    margin-top: 28px; padding: 32px 40px; border-radius: 24px; text-align: center;
+    background: linear-gradient(90deg, rgba(10,124,255,.18), rgba(255,90,46,.18));
+    border: 1px solid rgba(255,255,255,.12);
+    font-size: clamp(20px, 2.2vw, 28px); font-weight: 300;
+  }
+  .ponte strong { font-weight: 700; }
+
+  /* ---------- 3. Claudinho ---------- */
+  .mascote-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+  .mascote-foto { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4/5; border: 1px solid rgba(31,164,255,.35); box-shadow: 0 0 60px rgba(10,124,255,.25); }
+  .mascote-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 12% 50%; transform: scale(1.35); transform-origin: 18% 50%; }
+  .tracos { list-style: none; margin-top: 36px; display: grid; gap: 14px; }
+  .tracos li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 22px; border-radius: 16px; background: rgba(11,33,80,.55); border: 1px solid rgba(31,164,255,.2); }
+  .tracos .dot { flex: 0 0 14px; height: 14px; margin-top: 4px; border-radius: 50%; border: 2px solid var(--azul-neon); box-shadow: var(--glow-azul); }
+  .tracos li:nth-child(even) .dot { border-color: var(--laranja); box-shadow: var(--glow-laranja); }
+  .tracos b { display: block; font-size: 17px; margin-bottom: 2px; }
+  .tracos span { color: rgba(255,255,255,.75); font-size: 15px; }
+
+  /* ---------- 4. Paleta ---------- */
+  .paleta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+  .cor { border-radius: 20px; overflow: hidden; background: var(--navy); border: 1px solid rgba(255,255,255,.08); }
+  .cor .amostra { height: 160px; position: relative; }
+  .cor .info { padding: 18px 20px 22px; }
+  .cor .nome { font-weight: 700; font-size: 17px; }
+  .cor .hex { font-size: 14px; color: var(--cinza); letter-spacing: .06em; margin: 2px 0 10px; cursor: pointer; }
+  .cor .hex:hover { color: var(--branco); }
+  .cor .uso { font-size: 14px; color: rgba(255,255,255,.72); }
+  .cor.destaque { grid-column: span 2; }
+  .cor.destaque .amostra { height: 220px; }
+  .proporcao { margin-top: 40px; }
+  .proporcao .barra { display: flex; height: 40px; border-radius: 12px; overflow: hidden; }
+  .proporcao .barra div { display: flex; align-items: center; padding-left: 14px; font-size: 13px; font-weight: 700; }
+  .proporcao p { margin-top: 12px; font-size: 14px; color: var(--cinza); }
+
+  /* ---------- 5. Tipografia ---------- */
+  .tipo-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; margin-top: 56px; align-items: start; }
+  .aa { font-size: 220px; font-weight: 700; line-height: .85; letter-spacing: -.04em; background: linear-gradient(135deg, var(--azul-neon), var(--azul) 50%, var(--laranja)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pesos { display: flex; gap: 28px; margin-top: 24px; color: var(--cinza); font-size: 15px; }
+  .pesos span:nth-child(1) { font-weight: 300; } .pesos span:nth-child(3) { font-weight: 700; }
+  .escala > div { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .escala .rot { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--cinza); }
+  .escala .rot small { display: block; font-weight: 400; letter-spacing: .04em; text-transform: none; margin-top: 4px; }
+
+  /* ---------- 6. Elementos ---------- */
+  .elem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+  .elem { border-radius: 20px; background: linear-gradient(160deg, var(--navy-luz), var(--noite)); border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+  .elem .palco { height: 240px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .elem .info { padding: 20px 22px 24px; border-top: 1px solid rgba(255,255,255,.06); }
+  .elem h4 { font-size: 18px; margin-bottom: 6px; }
+  .elem p { font-size: 14px; color: rgba(255,255,255,.72); }
+  .mini-8 { font-size: 170px; font-weight: 300; line-height: 1; color: transparent; -webkit-text-stroke: 4px var(--azul-neon); filter: drop-shadow(0 0 8px var(--azul-neon)) drop-shadow(0 0 26px var(--azul)); }
+  .mini-1 { font-size: 170px; font-weight: 700; line-height: 1; color: transparent; -webkit-text-stroke: 4px var(--laranja); filter: drop-shadow(0 0 8px var(--laranja-claro)) drop-shadow(0 0 26px var(--laranja-brasa)); }
+  .mini-aneis { position: relative; width: 300px; height: 110px; }
+  .mini-aneis span { position: absolute; inset: 0; margin: auto; border-radius: 50%; }
+  .mini-aneis .r1 { border: 2px solid var(--azul-neon); box-shadow: 0 0 14px var(--azul), inset 0 0 14px rgba(10,124,255,.5); border-right-color: var(--laranja); }
+  .mini-aneis .r2 { width: 66%; height: 66%; border: 1px solid rgba(31,164,255,.45); }
+  .mini-aneis .r3 { width: 34%; height: 34%; border: 1px solid rgba(31,164,255,.25); }
+  .grid-bg { background-image: linear-gradient(rgba(31,164,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(31,164,255,.08) 1px, transparent 1px); background-size: 28px 28px; }
+  .cta-demo { display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; font-weight: 700; font-size: 18px; background: linear-gradient(180deg, var(--laranja-claro), var(--laranja)); box-shadow: 0 16px 50px rgba(255,90,46,.45); }
+  .cta-demo.azul { background: linear-gradient(180deg, var(--azul-neon), var(--azul)); box-shadow: 0 16px 50px rgba(10,124,255,.5); }
+  .logo-demo { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .logo-demo img.wm { height: 44px; }
+  .logo-demo .casas { display: flex; gap: 28px; }
+  .logo-demo .casas img { height: 44px; }
+
+  /* ---------- 7. Aplicações ---------- */
+  .apps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; margin-top: 56px; }
+  .app { border-radius: 22px; overflow: hidden; position: relative; background: var(--navy); border: 1px solid rgba(255,255,255,.08); cursor: zoom-in; }
+  .app img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .app:hover img { transform: scale(1.03); }
+  .app figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 22px 18px; background: linear-gradient(0deg, rgba(5,11,31,.92), transparent); font-weight: 700; font-size: 16px; }
+  .app figcaption small { display: block; font-weight: 400; font-size: 13px; color: rgba(255,255,255,.72); margin-top: 2px; }
+  .app.kv { grid-column: span 6; aspect-ratio: 2048/1136; }
+  .app.cam { grid-column: span 4; aspect-ratio: 3/2; }
+  .app.copo { grid-column: span 2; }
+  .app.ativ { grid-column: span 6; aspect-ratio: 1376/768; }
+
+  .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(5,11,31,.94); display: none; align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; }
+  .lightbox.on { display: flex; }
+  .lightbox img { max-height: 100%; border-radius: 16px; box-shadow: 0 0 80px rgba(10,124,255,.35); }
+
+  /* ---------- Rodapé ---------- */
+  footer { padding: 80px var(--margem) 60px; text-align: center; border-top: 1px solid rgba(255,255,255,.06); }
+  footer img { height: 34px; margin: 0 auto 18px; }
+  footer p { color: var(--cinza); font-size: 14px; }
+
+  @media (max-width: 900px) {
+    header nav { display: none; }
+    .mote-grid, .mascote-grid, .tipo-grid { grid-template-columns: 1fr; }
+    .paleta { grid-template-columns: 1fr 1fr; }
+    .elem-grid { grid-template-columns: 1fr; }
+    .app.cam, .app.copo { grid-column: span 6; }
+    .aa { font-size: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="img/wordmark_branco.png" alt="Seazone">
+  <nav>
+    <a href="#mote">Mote</a>
+    <a href="#claudinho">Claudinho</a>
+    <a href="#paleta">Paleta</a>
+    <a href="#tipografia">Tipografia</a>
+    <a href="#elementos">Elementos</a>
+    <a href="#aplicacoes">Aplicações</a>
+  </nav>
+</header>
+
+<!-- 1. CAPA -->
+<section class="capa fundo-noite">
+  <svg class="circuito" style="top:90px; right:0; width:46vw; max-width:640px;" viewBox="0 0 640 300">
+    <path class="a" d="M640 40 H470 L420 90 H300"/><circle class="na" cx="300" cy="90" r="7"/>
+    <path class="a" d="M640 70 H500 L460 110"/><circle class="ca" cx="460" cy="110" r="5"/>
+    <path class="l" d="M640 150 H420 L380 190 H250"/><circle class="nl" cx="250" cy="190" r="7"/>
+    <path class="l" d="M640 185 H470 L430 225"/><circle class="cl" cx="430" cy="225" r="5"/>
+  </svg>
+  <svg class="circuito" style="top:700px; left:0; width:38vw; max-width:520px;" viewBox="0 0 520 220">
+    <path class="a" d="M0 60 H160 L210 110 H330"/><circle class="na" cx="330" cy="110" r="7"/>
+    <path class="l" d="M0 150 H120 L160 190 H260"/><circle class="cl" cx="260" cy="190" r="5"/>
+  </svg>
+  <div class="aneis"><span class="r1"></span><span class="r2"></span><span class="r3"></span></div>
+
+  <div class="wrap">
+    <div class="lockup azul">
+      <div class="num oito">8</div>
+      <div class="frase"><span class="fina">anos de</span><span class="forte">evolução,</span></div>
+    </div>
+    <div class="lockup laranja linha2">
+      <div class="num um">1</div>
+      <div class="frase"><span class="fina">ano de</span><span class="forte">revolução.</span></div>
+    </div>
+    <div class="sub"><img src="img/casinha_coral.png" alt="">Identidade visual · Festa de 8 anos Seazone</div>
+  </div>
+</section>
+
+<!-- 2. MOTE -->
+<section id="mote" class="fundo-navy">
+  <div class="wrap">
+    <div class="eyebrow">O mote</div>
+    <h2>A gente nunca parou de evoluir.<br>Agora, <span class="t-laranja">estamos revolucionando.</span></h2>
+    <p class="lead">O mote junta duas histórias numa frase só: a de <strong>quem a Seazone vem se tornando</strong> ao longo de oito anos e a do <strong>salto que o AI First trouxe</strong> no último ano.</p>
+
+    <div class="mote-grid">
+      <div class="pilar">
+        <div class="big">8</div>
+        <h3>anos de <span class="t-azul">evolução</span></h3>
+        <p>Cada ano trouxe mais processo, mais tecnologia e mais gente fazendo a operação acontecer. É uma construção contínua: a Seazone <strong>não parou de evoluir</strong> em nenhum momento.</p>
+      </div>
+      <div class="pilar rev">
+        <div class="big">1</div>
+        <h3>ano de <span class="t-laranja">revolução</span></h3>
+        <p>Com o <strong>AI First</strong>, a IA entrou no dia a dia de todos os times. Isso vai além de fazer melhor o que já fazíamos: <strong>muda a forma como o aluguel por temporada funciona</strong>, e a Seazone está puxando essa mudança no mercado.</p>
+      </div>
+    </div>
+    <div class="ponte"><span class="t-azul"><strong>Azul</strong></span> é a evolução: base, constância, o que construímos. <span class="t-laranja"><strong>Laranja</strong></span> é a revolução: energia, ruptura, o que estamos fazendo agora.</div>
+  </div>
+</section>
+
+<!-- 3. CLAUDINHO -->
+<section id="claudinho" class="fundo-noite">
+  <svg class="circuito" style="top:60px; right:0; width:30vw; max-width:420px;" viewBox="0 0 420 160">
+    <path class="l" d="M420 40 H280 L240 80 H150"/><circle class="nl" cx="150" cy="80" r="7"/>
+    <path class="a" d="M420 110 H300 L270 140"/><circle class="ca" cx="270" cy="140" r="5"/>
+  </svg>
+  <div class="wrap mascote-grid">
+    <div class="mascote-foto"><img src="img/key-visual.jpg" alt="Claudinho, o mascote da festa"></div>
+    <div>
+      <div class="eyebrow azul">O mascote</div>
+      <h2>Esse é o <span class="t-azul">Claudinho.</span></h2>
+      <p class="lead">Ele é a revolução em forma de personagem. O Claudinho representa a IA que virou <strong>nosso braço direito em praticamente todas as tarefas</strong>.</p>
+      <ul class="tracos">
+        <li><i class="dot"></i><div><b>Veste a camisa</b><span>Usa a camiseta Seazone como qualquer pessoa do time, porque ele trabalha junto com a gente.</span></div></li>
+        <li><i class="dot"></i><div><b>Simpático, nunca ameaçador</b><span>Rosto amigável, olhos grandes e sorriso: a IA como parceira de trabalho.</span></div></li>
+        <li><i class="dot"></i><div><b>Nas cores da festa</b><span>Corpo branco com detalhes em laranja, o mesmo tom da revolução.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PALETA -->
+<section id="paleta" class="fundo-navy">
+  <div class="wrap">
+    <div class="eyebrow">Paleta</div>
+    <h2>Neon sobre a noite.</h2>
+    <p class="lead">As cores foram medidas nos mockups da festa. Derivam do azul e do coral de SZS, mas ficam <strong>mais elétricas e com brilho</strong>, sempre sobre fundo escuro. Clique no HEX para copiar.</p>
+
+    <div class="paleta">
+      <div class="cor destaque">
+        <div class="amostra" style="background: linear-gradient(135deg, var(--azul-neon), var(--azul) 60%, var(--azul-fundo)); box-shadow: inset 0 0 60px rgba(31,164,255,.5);"></div>
+        <div class="info"><div class="nome">Azul Evolução</div><div class="hex" data-hex="#0A7CFF">#0A7CFF</div><div class="uso">Cor do "8" e da palavra "evolução". Base dos circuitos, anéis e CTAs principais.</div></div>
+      </div>
+      <div class="cor destaque">
+        <div class="amostra" style="background: linear-gradient(135deg, var(--laranja-claro), var(--laranja) 55%, var(--laranja-brasa)); box-shadow: inset 0 0 60px rgba(255,138,76,.5);"></div>
+        <div class="info"><div class="nome">Laranja Revolução</div><div class="hex" data-hex="#FF5A2E">#FF5A2E</div><div class="uso">Cor do "1" e da palavra "revolução". Acento de energia: pouco e em pontos-chave.</div></div>
+      </div>
+      <div class="cor">
+        <div class="amostra" style="background: var(--noite); border-bottom: 1px solid rgba(255,255,255,.08);"></div>
+        <div class="info"><div class="nome">Noite</div><div class="hex" data-hex="#050B1F">#050B1F</div><div class="uso">Fundo principal de todas as peças.</div></div>
+      </div>
+      <div class="cor">
+        <div class="amostra" style="background: radial-gradient(circle at 50% 30%, var(--navy-luz), var(--navy));"></div>
+        <div class="info"><div class="nome">Navy</div><div class="hex" data-hex="#0A1A3A">#0A1A3A</div><div class="uso">Vinheta de luz, cards e painéis. Luz: <span class="hex" data-hex="#0B2150" style="display:inline">#0B2150</span></div></div>
+      </div>
+      <div class="cor">
+        <div class="amostra" style="background: var(--azul-neon); box-shadow: inset 0 0 40px rgba(255,255,255,.35);"></div>
+        <div class="info"><div class="nome">Azul Neon</div><div class="hex" data-hex="#1FA4FF">#1FA4FF</div><div class="uso">Brilho, contorno neon e destaques de texto sobre fundo escuro.</div></div>
+      </div>
+      <div class="cor">
+        <div class="amostra" style="background: var(--branco);"></div>
+        <div class="info"><div class="nome">Branco</div><div class="hex" data-hex="#FFFFFF">#FFFFFF</div><div class="uso">Texto corrido, wordmark e corpo do Claudinho.</div></div>
+      </div>
+    </div>
+
+    <div class="proporcao">
+      <div class="barra">
+        <div style="flex:60; background: var(--noite); border: 1px solid rgba(255,255,255,.1);">Noite / Navy · 60%</div>
+        <div style="flex:22; background: var(--azul);">Azul · 22%</div>
+        <div style="flex:10; background: var(--branco); color: var(--noite);">Branco · 10%</div>
+        <div style="flex:8; background: var(--laranja);">8%</div>
+      </div>
+      <p>Proporção de referência: o fundo escuro domina, o azul estrutura e o laranja aparece como faísca. Laranja demais faz perder a leitura de "revolução como destaque".</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. TIPOGRAFIA -->
+<section id="tipografia" class="fundo-noite">
+  <div class="wrap">
+    <div class="eyebrow azul">Tipografia</div>
+    <h2>Helvetica, do fino ao forte.</h2>
+    <p class="lead">A mesma família de SZS em toda a festa. O contraste entre <strong>Light</strong> e <strong>Bold</strong> reproduz a leitura do mote: "anos de" sussurra, "evolução" fala alto.</p>
+
+    <div class="tipo-grid">
+      <div>
+        <div class="aa">Aa</div>
+        <div class="pesos"><span>Light 300</span><span>Regular 400</span><span>Bold 700</span></div>
+      </div>
+      <div class="escala">
+        <div><span class="rot">Numeral<small>Light/Bold · contorno neon</small></span><span style="font-size:72px; line-height:1; font-weight:300; color:transparent; -webkit-text-stroke:2.5px var(--azul-neon); filter:drop-shadow(0 0 8px var(--azul));">8</span></div>
+        <div><span class="rot">Título<small>Bold 700 · -1,5%</small></span><span style="font-size:44px; font-weight:700; letter-spacing:-.015em; line-height:1.05;">evolução, revolução.</span></div>
+        <div><span class="rot">Conector<small>Light 300</small></span><span style="font-size:32px; font-weight:300;">anos de · ano de</span></div>
+        <div><span class="rot">Eyebrow<small>Bold · caixa alta · +16%</small></span><span style="font-size:14px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--laranja);">Festa de 8 anos</span></div>
+        <div><span class="rot">Corpo<small>Regular 400 · 1,4</small></span><span style="font-size:17px; color:rgba(255,255,255,.82);">Texto de apoio curto, em branco a 82% sobre o fundo escuro.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ELEMENTOS -->
+<section id="elementos" class="fundo-navy">
+  <div class="wrap">
+    <div class="eyebrow">Elementos gráficos</div>
+    <h2>Circuitos, anéis e luz.</h2>
+    <p class="lead">A linguagem vem da tecnologia: trilhas de circuito que <strong>sempre sobem</strong> (evolução) e se cruzam em azul e laranja, anéis de luz no "chão" e brilho neon nos numerais.</p>
+
+    <div class="elem-grid">
+      <div class="elem">
+        <div class="palco"><span class="mini-8">8</span><span class="mini-1">1</span></div>
+        <div class="info"><h4>Numerais neon</h4><p>Só contorno, com glow. O 8 sempre em azul, o 1 sempre em laranja. Nunca preenchidos.</p></div>
+      </div>
+      <div class="elem">
+        <div class="palco grid-bg">
+          <svg class="circuito" style="position:static; width:90%;" viewBox="0 0 320 180">
+            <path class="a" d="M10 160 H90 L140 110 H210 L260 60"/><circle class="na" cx="260" cy="60" r="7"/><circle class="ca" cx="140" cy="110" r="4"/>
+            <path class="l" d="M10 130 H70 L120 80 H190 L240 30 H310"/><circle class="nl" cx="310" cy="30" r="7"/><circle class="cl" cx="120" cy="80" r="4"/>
+            <path class="a" d="M60 175 H150 L190 135"/><circle class="na" cx="190" cy="135" r="6"/>
+          </svg>
+        </div>
+        <div class="info"><h4>Trilhas de circuito</h4><p>Linhas finas com curvas a 45° e nós nas pontas. Sobem da esquerda para a direita, saindo das bordas e barras.</p></div>
+      </div>
+      <div class="elem">
+        <div class="palco"><div class="mini-aneis"><span class="r1"></span><span class="r2"></span><span class="r3"></span></div></div>
+        <div class="info"><h4>Anéis de luz</h4><p>Elipses concêntricas como um palco. Azul dominante, com o laranja entrando por um lado.</p></div>
+      </div>
+      <div class="elem">
+        <div class="palco" style="gap:18px; flex-direction:column;"><span class="cta-demo azul">Bora comemorar</span><span class="cta-demo">Revolução</span></div>
+        <div class="info"><h4>Pílulas com glow</h4><p>Azul como padrão e laranja só para o destaque. Herdadas da pílula SZS, com brilho mais forte.</p></div>
+      </div>
+      <div class="elem">
+        <div class="palco"><div class="logo-demo"><img class="wm" src="img/wordmark_branco.png" alt="Seazone"><div class="casas"><img src="img/casinha_coral.png" alt=""><img src="img/casinha_branca.png" alt=""></div></div></div>
+        <div class="info"><h4>Logo</h4><p>Wordmark branco com a casinha coral. Na camiseta, a casinha sozinha na manga e nas costas.</p></div>
+      </div>
+      <div class="elem">
+        <div class="palco grid-bg" style="background-color: var(--noite);"><span style="font-size:28px; font-weight:300; text-align:center; line-height:1.2;">Fundo <b style="font-weight:700; color:var(--azul-neon);">sempre escuro</b>,<br>luz <b style="font-weight:700; color:var(--laranja);">sempre de dentro</b>.</span></div>
+        <div class="info"><h4>Regra de ouro</h4><p>Nada de fundo claro. O brilho sai dos elementos, não do fundo, como numa pista iluminada.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. APLICAÇÕES -->
+<section id="aplicacoes" class="fundo-noite">
+  <div class="wrap">
+    <div class="eyebrow azul">Aplicações</div>
+    <h2>A identidade na festa.</h2>
+    <p class="lead">Mockups das peças. Clique para ampliar.</p>
+
+    <div class="apps">
+      <figure class="app kv"><img src="img/key-visual.jpg" alt="Key visual"><figcaption>Key visual<small>Claudinho + mote: telão, convite e redes</small></figcaption></figure>
+      <figure class="app cam"><img src="img/camiseta.png" alt="Camiseta"><figcaption>Camiseta do time<small>Preta, mote no peito, circuitos na manga e na barra, casinha nas costas</small></figcaption></figure>
+      <figure class="app copo"><img src="img/copo.png" alt="Copo"><figcaption>Copo<small>Azul translúcido com circuitos</small></figcaption></figure>
+      <figure class="app ativ"><img src="img/ativacao.jpg" alt="Ativação na festa"><figcaption>Ativação e backdrop<small>Claudinho em tamanho real para fotos, backdrop com wordmark e o time de camiseta</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="img/wordmark_branco.png" alt="Seazone">
+  <p>8 anos de evolução, 1 ano de revolução.</p>
+</footer>
+
+<div class="lightbox" id="lb"><img alt=""></div>
+
+<script>
+  const lb = document.getElementById('lb');
+  document.querySelectorAll('.app').forEach(a => a.addEventListener('click', () => {
+    lb.querySelector('img').src = a.querySelector('img').src;
+    lb.classList.add('on');
+  }));
+  lb.addEventListener('click', () => lb.classList.remove('on'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+  document.querySelectorAll('.hex').forEach(h => h.addEventListener('click', e => {
+    e.stopPropagation();
+    navigator.clipboard?.writeText(h.dataset.hex);
+    const t = h.textContent; h.textContent = 'copiado!';
+    setTimeout(() => h.textContent = t, 900);
+  }));
+</script>
+</body>
+</html>
