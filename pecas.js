@@ -5,7 +5,7 @@ window.PECAS = [
     {id:"p05",nome:"Camiseta",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-17",responsavel:"",obs:"Fechar arte cedo — produção pede grade de tamanhos",ordem:10,sugerida:false},
     {id:"p06",nome:"Copo",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-17",responsavel:"",obs:"",ordem:20,sugerida:false},
     {id:"p07",nome:"Boné",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-17",responsavel:"",obs:"",ordem:30,sugerida:false},
-    {id:"p20",nome:"Tag de mala (gravação 5×5 cm no couro)",categoria:"Brindes",status:"em_aprovacao",prazo:"2026-11-12",responsavel:"Johny",obs:"Baixo relevo sem cor: casinha + logotipo oficial + 8 anos · 2018–2026 — pecas-producao/10-tag-mala",ordem:35,sugerida:false},
+    {id:"p20",nome:"Tag de mala (gravação 5×5 cm no couro)",categoria:"Brindes",status:"em_aprovacao",prazo:"2026-11-12",responsavel:"Johny",obs:"Baixo relevo sem cor: horizontal, casinha + logotipo oficial + 8 anos · 28.11.2026 — pecas-producao/10-tag-mala",ordem:35,sugerida:false},
     {id:"p08",nome:"Sacola / embalagem do kit",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-24",responsavel:"",obs:"Junta camiseta, copo e boné",ordem:40,sugerida:true},
     {id:"p09",nome:"Totem do mascote para fotos",categoria:"Cenografia",status:"a_fazer",prazo:"2026-10-24",responsavel:"",obs:"",ordem:10,sugerida:false},
     {id:"p10",nome:"Backdrop / painel de fundo do palco",categoria:"Cenografia",status:"a_fazer",prazo:"2026-10-24",responsavel:"",obs:"Medidas com o fornecedor antes da arte",ordem:20,sugerida:true},
