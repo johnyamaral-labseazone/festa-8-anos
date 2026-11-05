@@ -5,6 +5,7 @@ window.PECAS = [
     {id:"p05",nome:"Camiseta",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-17",responsavel:"",obs:"Fechar arte cedo — produção pede grade de tamanhos",ordem:10,sugerida:false},
     {id:"p06",nome:"Copo",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-17",responsavel:"",obs:"",ordem:20,sugerida:false},
     {id:"p07",nome:"Boné",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-17",responsavel:"",obs:"",ordem:30,sugerida:false},
+    {id:"p20",nome:"Tag de mala (cartão 5×5 cm)",categoria:"Brindes",status:"em_aprovacao",prazo:"2026-11-12",responsavel:"Johny",obs:"Arte pronta: frente com a ID, verso claro para nome e contato — pecas-producao/10-tag-mala",ordem:35,sugerida:false},
     {id:"p08",nome:"Sacola / embalagem do kit",categoria:"Brindes",status:"a_fazer",prazo:"2026-10-24",responsavel:"",obs:"Junta camiseta, copo e boné",ordem:40,sugerida:true},
     {id:"p09",nome:"Totem do mascote para fotos",categoria:"Cenografia",status:"a_fazer",prazo:"2026-10-24",responsavel:"",obs:"",ordem:10,sugerida:false},
     {id:"p10",nome:"Backdrop / painel de fundo do palco",categoria:"Cenografia",status:"a_fazer",prazo:"2026-10-24",responsavel:"",obs:"Medidas com o fornecedor antes da arte",ordem:20,sugerida:true},
